@@ -1,6 +1,6 @@
-@coding_challenge_HostAddress = http://localhost:5248
+@coding_challenge_HostAddress = https://localhost:7109/
 
-GET {{coding_challenge_HostAddress}}/weatherforecast/
+GET {{coding_challenge_HostAddress}}/api/weatherforecast/
 Accept: application/json
 
 ###

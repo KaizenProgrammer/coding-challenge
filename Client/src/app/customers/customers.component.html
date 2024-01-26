@@ -14,11 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr
-      class="customer-row"
-      *ngFor="let customer of customers; index as i"
-      title="Click to Edit"
-    >
+    <tr class="customer-row" *ngFor="let customer of customers; index as i">
       <td *ngIf="selectedCustomer !== i">{{ customer.firstName }}</td>
       <td *ngIf="selectedCustomer !== i">{{ customer.lastName }}</td>
       <td *ngIf="selectedCustomer !== i">{{ customer.email }}</td>

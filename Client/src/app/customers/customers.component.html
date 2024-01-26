@@ -1,0 +1,95 @@
+<div class="header">
+  <h1>Customers</h1>
+  <a class="btn" routerLink="/add">Add Customer</a>
+</div>
+<table class="customer-table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Created On</th>
+      <th>Last Updated</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      class="customer-row"
+      *ngFor="let customer of customers; index as i"
+      title="Click to Edit"
+    >
+      <td *ngIf="selectedCustomer !== i">{{ customer.firstName }}</td>
+      <td *ngIf="selectedCustomer !== i">{{ customer.lastName }}</td>
+      <td *ngIf="selectedCustomer !== i">{{ customer.email }}</td>
+      <td *ngIf="selectedCustomer !== i">
+        {{ customer.createdDate | date : "shortDate" }}
+      </td>
+      <td *ngIf="selectedCustomer !== i">
+        {{ customer.updatedDate | dateAgo }}
+      </td>
+      <td *ngIf="selectedCustomer !== i">
+        <button (click)="select(i)" class="btn" type="button">Edit</button>
+      </td>
+      <td class="editing" *ngIf="selectedCustomer === i" colspan="6">
+        <form
+          [formGroup]="customerForm"
+          (ngSubmit)="onSubmit()"
+          class="edit-form"
+        >
+          <div>
+            <input
+              type="text"
+              id="firstName"
+              formControlName="firstName"
+              autofocus
+            />
+            <div
+              *ngIf="
+                customerForm.get('firstName')?.invalid &&
+                customerForm.get('firstName')?.touched
+              "
+              class="error-message"
+            >
+              First Name is required.
+            </div>
+          </div>
+          <div>
+            <input type="text" id="lastName" formControlName="lastName" />
+            <div
+              *ngIf="
+                customerForm.get('lastName')?.invalid &&
+                customerForm.get('lastName')?.touched
+              "
+              class="error-message"
+            >
+              Last Name is required.
+            </div>
+          </div>
+          <div>
+            <input type="text" id="email" formControlName="email" />
+            <div *ngIf="customerForm.get('email')?.touched">
+              <div
+                *ngIf="customerForm.get('email')?.hasError('required')"
+                class="error-message"
+              >
+                Valid Email is required.
+              </div>
+              <div
+                *ngIf="customerForm.get('email')?.hasError('serverError')"
+                class="error-message"
+              >
+                {{ customerForm.get("email")?.getError("serverError") }}
+              </div>
+            </div>
+          </div>
+
+          <button class="btn" type="submit">Save</button>
+          <button class="btn outline ml-2" (click)="select(-1)" type="button">
+            Cancel
+          </button>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>

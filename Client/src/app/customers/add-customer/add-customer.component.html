@@ -1,0 +1,82 @@
+<div class="header">
+  <h1>Add Customer</h1>
+  <a class="btn" routerLink="/">Return to List</a>
+</div>
+<div>
+  <button class="btn" type="button" (click)="populateForm()">
+    Populate Randomly
+  </button>
+  <button class="btn ml-2" type="button" (click)="populateFormAndSave()">
+    Populate Random and Save
+  </button>
+</div>
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label
+      [class.invalid]="
+        customerForm.get('firstName')?.invalid &&
+        customerForm.get('firstName')?.touched
+      "
+      for="firstName"
+      >First Name:</label
+    >
+    <input type="text" id="firstName" formControlName="firstName" />
+    <div
+      *ngIf="
+        customerForm.get('firstName')?.invalid &&
+        customerForm.get('firstName')?.touched
+      "
+      class="error-message"
+    >
+      First Name is required.
+    </div>
+  </div>
+  <div>
+    <label
+      [class.invalid]="
+        customerForm.get('lastName')?.invalid &&
+        customerForm.get('lastName')?.touched
+      "
+      for="lastName"
+      >Last Name:</label
+    >
+    <input type="text" id="lastName" formControlName="lastName" />
+    <div
+      *ngIf="
+        customerForm.get('lastName')?.invalid &&
+        customerForm.get('lastName')?.touched
+      "
+      class="error-message"
+    >
+      Last Name is required.
+    </div>
+  </div>
+  <div>
+    <label
+      [class.invalid]="
+        customerForm.get('email')?.invalid && customerForm.get('email')?.touched
+      "
+      for="email"
+      >Email:</label
+    >
+    <input type="email" id="email" formControlName="email" />
+    <div *ngIf="customerForm.get('email')?.touched">
+      <div
+        *ngIf="customerForm.get('email')?.hasError('required')"
+        class="error-message"
+      >
+        Valid Email is required.
+      </div>
+      <div
+        *ngIf="customerForm.get('email')?.hasError('serverError')"
+        class="error-message"
+      >
+        {{ customerForm.get("email")?.getError("serverError") }}
+      </div>
+    </div>
+  </div>
+
+  <button class="btn" [disabled]="!customerForm.valid" type="submit">
+    Save Customer
+  </button>
+</form>

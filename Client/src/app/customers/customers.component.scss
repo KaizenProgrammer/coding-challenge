@@ -1,0 +1,81 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  margin-bottom: 2rem;
+}
+
+thead {
+  background-color: #e0e0e0;
+}
+
+th,
+td {
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  text-align: center;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #eaeaea;
+}
+tr {
+  height: 53px;
+  .editing {
+    background-color: white;
+  }
+}
+.header {
+  padding: 1rem;
+  width: calc(100% - 2rem);
+  max-width: 800px;
+  display: flex;
+  place-items: center;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  .btn {
+    margin-left: auto;
+  }
+}
+.customer-table {
+  padding: 1rem;
+  width: calc(100% - 2rem);
+  max-width: 800px;
+}
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  place-items: center;
+  place-content: center;
+  align-content: center;
+}
+
+.customer-row {
+  cursor: pointer;
+}
+
+.edit-form {
+  display: flex;
+  place-items: center;
+  gap: 0.25rem;
+}
+
+.error-message {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

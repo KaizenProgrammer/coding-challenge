@@ -1,6 +1,29 @@
-@coding_challenge_HostAddress = https://localhost:7109/
+@coding_challenge_HostAddress = http://localhost:5248/
 
-GET {{coding_challenge_HostAddress}}/api/weatherforecast/
+GET {{coding_challenge_HostAddress}}api/customers/
 Accept: application/json
 
+###
+
+POST {{coding_challenge_HostAddress}}api/customers/
+Accept: text/plain
+Content-Type: application/json
+
+{
+    "firstName": "",
+    "lastName": "",
+    "email": ""
+}
+###
+
+
+POST {{coding_challenge_HostAddress}}api/customers/
+Accept: text/plain
+Content-Type: application/json
+
+{
+    "firstName": "Michael",
+    "lastName": "Breazeale",
+    "email": "michael.breazeale@gmail.com"
+}
 ###
